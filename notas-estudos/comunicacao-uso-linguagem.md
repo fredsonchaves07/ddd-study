@@ -15,3 +15,9 @@
 
 - Se especialistas de domínio sofisticados não entenderem o modelo, há algo de errado com o modelo
 - Com uma linguagem onipresente, as coversas entre os desenvolvedores, as discursões entre os especialistas do domínio e as expressões no próprio código são todas baseadas na mesma linguagem, derivada de um modelo de domínio compartilhado
+
+![Captura de tela de 2023-05-09 18-34-32](https://github.com/fredsonchaves07/ddd-study/assets/43495376/49f6d9df-33c0-4522-b1cb-d39a167928bd)
+
+## Documentos e diagramas
+
+- Diagramas são um meio de comunicação e de explicação e facilitam a captação de ideias. Eles servem melhor a esses propósitos se forem sucintos. Diagramas cheio de informação para o modelo de objetos falham ao comunicar ou explicar alguma coisa
