@@ -7,4 +7,14 @@
 ![Captura de tela de 2023-05-16 08-55-20](https://github.com/fredsonchaves07/ddd-study/assets/43495376/8c8f7e31-ba4b-47b6-a1bb-2594a56f6adc)
 
 - O principio essencial é de que qualquer elemento de uma camada depende somente dos outros elementos da mesma camada ou dos elementos da camadas "abaixo" dela. A comunicação para acima deve passar por algum tipo de mecanismo indireto
-- O valor das camadas é que cada uma se especializa em um determinado aspectos de um programa de computador
+- O valor das camadas é que cada uma se especializa em um determinado aspectos de um programa de computador. Essa especialização permite designs mais coesos de cada aspecto, e facilita muito mais a interpretação desses designs.
+- Divida um programa complexo em camadas. Desenvolvaum design dentro de cada camada que seja coeso e que dependa somente das camadas abaixo dele.
+- Siga os padrões de arquitetura usados como padrão para proporcionar um baixo acoplamento com as camadas acima.
+- Concentre todo o código relacionado ao modelo do domínio em um camada e isole-o do código da interface do usuário, do aplicativo e da infraestrutura.
+- Camadas isoladas exigem uma manutenção mais barata, porque tendem a evoluir em ritmos diferentes e responder a diversas necessidades.
+- A separação também ajuda na aplicação em um sistema distribuido, permitindo que diferentes camdas seja colocadas flexivalmente em diferentes servidores ou clientes
+
+## Relacionando as camadas
+
+- As camadas tem por objetivo possui baixo acoplamento, com as dependências do design dispostas em apenas um sentido. As camadas superiores podem utilizar ou manipular elementos das camadas inferiores de forma bastante simples, chamando interfaces públicas, fazendo referências a elas e geralmente usando meios convencionais de interação. Mas quando um objeto de um nível inferior precisa comunicar-se para cima precisamos de outro mecanismo, baseado em padrões de arquitetura para relacionar camadas tais como chamadas de retorno ou Observers
+- As camadas do aplicativo e do domínio chama os Serviços fornecidos pela camada da infraestrutura. Quando o escopo de um Serviço foi bem escolhido e a sua interface foi bem elaborada, a parte que chama pode permanecer livremente acoplada
