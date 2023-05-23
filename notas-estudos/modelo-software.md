@@ -51,3 +51,12 @@
 - Um serviço é uma operação oferecida como interface que fica isolada no modelo, sem um estado de encapsulamento, como acontece com as entidades e objetos de valor.
 - Um serviço tende a ser nomeado de acordo com uma atividade em vez de uma entidade. É um verbo em vez de um substantivo.
 - Os nomes das operações devem ser provenientes da Linguagem Onipresente ou serem introduzidos nela. Parâmetros e resultados devem ser objetos do domínio
+
+## Módulos ou pacotes
+
+- O código é dividido em vários tipos de categorias, desde aspectos da arquitetura técnica até asatribuições de trabalho dos desenvolvedores
+- Baixo acoplamento e alta coesão são princípios gerais de design que se aplicam tanto a cada objeto quanto a módulos, mas são principalmente importantes nessa granularidade maior de modelagem e design
+- Sempre que dois elementos do modelo são separados em módulos diferentes, as relações entre eles se tornam menos diretas que antes, o que aumenta a sobrecarga para se entender o seu lugar no design. Um baixo acoplamento entre móduloss minimiza esse custo e possibilita a análise do conteúdo de um módulo com mínimo de referência aos outros que interagem
+- A refatoração de módulos é mais trabalhosa e mais incomoda que a refatoração de classes, e provavelmente não pode ser tão frequente.
+- Escolha módulos que contem  história do sistema e contenham um conjunto coeso de conceitos
+- A não ser que exista a intenção real de distribuir o código em servidores diferentes, mantenha todo o código (que implementa um único objeto conceitual) no mesmo módulo, se não no mesmo objeto
