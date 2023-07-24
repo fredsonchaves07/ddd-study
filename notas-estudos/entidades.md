@@ -46,3 +46,13 @@
 - Para evitar este erro, devemos fazer uma de duas coisas. Alteramos o projeto para alocar e atribuir a identidade precocemente, ou refatoramos o método `equals` para comparar os atributos além da identidade do domínio
 - O método `hashCode` do mesmo objeto deve se harmonizar com o método `equals`
 - É preferível atribuição precoces à abordagem de teste de igualdade de valor. É mais desejável que as entidades tenham métodos `equals` e `hashCodes` que se baseiam na identificação única do objeto do que em outros atributos
+
+### Identidade substituta
+
+- Algumas ferramentas ORM, como hibernate, querem lidar com a identidade do objeto em seus próprios termos. O Hibernete prefere o tipo nativo do banco de dados, por exemplo, uma sequência numérica, como a identidade primária de cada Entidade
+- Não há necessidade de a identidade do domínio desempenhar o papel da chave primária no banco de dados. Permitimos que o id substituto funcione como a chave primária do banco de dados
+
+### Estabilidade da identidade
+
+- Na maioria dos casos, uma identidade única deve ser protegida contra modificações, permanecendo estável ao longo do tempo de vida da entidade à qual ela é atribuida
+- Podemos tomar medidas triviais para impedir a modificação da identidade. Podemos ocultar dos clientes os setters de identidade. Podemos também criar controladores nos setters para evitar que até mesmo a própria entidade altere o estado da identidade se ela já existir
