@@ -56,3 +56,31 @@
 
 - Na maioria dos casos, uma identidade única deve ser protegida contra modificações, permanecendo estável ao longo do tempo de vida da entidade à qual ela é atribuida
 - Podemos tomar medidas triviais para impedir a modificação da identidade. Podemos ocultar dos clientes os setters de identidade. Podemos também criar controladores nos setters para evitar que até mesmo a própria entidade altere o estado da identidade se ela já existir
+
+## Descobrindo entidade e suas características intrínsecas
+
+### Validação
+
+- A principal razão para uar a validação no modelo é para verificar a exatidão de qualquer um atributo/propriedade, qualquer objeto inteiro ou qualquer composição de objetos.
+- A validação realiza coisas diferentes. Só porque todos os atrubutos/propriedades de um objeto de domínio são individualmente válidos não significa que o objeto como um todo é válido
+- Talvez a combinação de duas entidades, cada uma das quais com estados válidos individuais, na verdade torna a composição inválida
+
+#### Validando atributos e propriedades
+
+- O autoencapsulamento significa projetar as classes de modo que todo o acesso aos dados, mesmo dentro da mesma classe, passa por métodos de acesso
+- O uso dessa tecnica apresenta várias vantagens. Ela permite a abstração das variáveis de instância de um objeto. Fornece uma maneira de derivar facilmente atributos/propriedades a partir de quaisquer outros que o objeto contém
+
+#### Validando objetos inteiros
+
+- Incorporar a validação a uma entidade também dá a ela muitas responsabilidades. Ela já tem a responsabilidade de lidar com o comportamento do domíio, uma vez que mantém seu estado.
+- Um componente de validação tem a respondabilidade de determinar se o estado da entidade é ou não válido. Ao projetar uma classe de validação separada com o Java, insiraá no mesmo módulo (pacote) que o da Entidade
+- A classe de validação pode implementar o padrão Especificação ou padrão de estratégia. Se detectar um estado inválido, ela informará o cliente ou de outro modo criará um registro dos resultados que podem ser revistos mais tarde (por exemplo, após o processamento em lote)
+
+#### Validado composições de objetos
+
+- Aqui determinados não apenas que uma entidade individual é válida, mas que um agrupamento ou composição de Entidades são todas válidas conjuntamente, incluindo uma ou mais instâncias de agregado. Para fazer isso, podemos instanciar a subclasse concreta Validator com o número apropriado de instâncias. Mas pode ser melhor gerenciar esse tipo de validação usando um serviço de domínio
+
+#### Monitoramento de alterações
+
+- De acordo com a definição de entidade, não é necessário monitorar as alterações que ocorrem no estado durante sua vida útil. Só precisamos suportar seu estado em constante mudanças. Mas as vezes especialistas em domínio se preocupam com ocorrências importantes no modelo à medida que o tempo passa. Quando esse é o caso, monitorar açterações específicas na entidade pode ajudar
+- A maneira mais prática de alcançar um monitoramento preciso e útil das alterações é usar eventos de domínioe um armazenamento de eventos
