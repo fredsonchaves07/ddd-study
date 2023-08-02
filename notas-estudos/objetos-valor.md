@@ -32,3 +32,11 @@
 - Podemos criar testes para testar a imutabilidade do objeto de valor
 - Os testes do modelo devem ter um significado para os especialistas em domínio
 - Os testes de objeto de valor devem apresentar o comportamento esperado livre de efeitos colaterais e que o estado do objeto seja imutável
+
+## Persistindo objetos de valor
+
+### Evitar a influência indevida do vazamento de dados do modelo
+
+- Na maioria das vezes o objeto de valor é persistido em um armazenamento de dados. É armazenado de um forma não normalizada; isto é, seus atributos são armazenados na mesma linha da tabela de banco de dados como objeto de entidade pai
+- Há momento, porém, em que um objeto de valor no modelo será necessariamente armazenado como uma entidade em relação a um armazenamento de persistência relacional.
+- Se possível, projete o modelo de dados tem em vista seu modelo de domínio e não o inverso
