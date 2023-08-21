@@ -19,3 +19,8 @@
 - Os eventos costumam ser projetado como imutável. A interface do evento tem propósito expresso de transmitir as propriedades que refletem a sua causa
 - Com o evento publicado, um assinante no contexto delimitado pode usá-lo para notificar um agregado
 - Para derivar um estado mais rico usando operações, cerifique-se de que todos os comportamentos adicionais dos eventos estão livre de efeitos colaterais protegendo a imutabilidade do objeto
+
+### Com características de agregado
+
+- As vezes, eventos são projetados para que sejam criados por meio de solicitação direta dos clientes. Isso é feito em resposta a alguma ocorrência que não é resultado direto da execução do comportamento em uma instância de um agregado no modelo. Possivelmente um usuário do sistema inicializa alguma ação que é considerada um evento por si só
+- Quando isso acontece, o evento pode ser modelado com um agregado e retido em seu próprio repositório. Como ele representa alguma ocorrência no passado, o repositório não permitiria sua remoção.
