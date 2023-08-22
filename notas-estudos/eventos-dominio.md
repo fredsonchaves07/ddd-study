@@ -24,3 +24,27 @@
 
 - As vezes, eventos são projetados para que sejam criados por meio de solicitação direta dos clientes. Isso é feito em resposta a alguma ocorrência que não é resultado direto da execução do comportamento em uma instância de um agregado no modelo. Possivelmente um usuário do sistema inicializa alguma ação que é considerada um evento por si só
 - Quando isso acontece, o evento pode ser modelado com um agregado e retido em seu próprio repositório. Como ele representa alguma ocorrência no passado, o repositório não permitiria sua remoção.
+- Quando um evento é modelado dessa forma, ele pode ser publicado via uma infraestrutura de transmissão de mensagens ao mesmo tempo que é adicionado ao repositório
+- O cliente pode chamar um serviço de domínio para criar o evento, adicioná-lo ao repositório e então public-alo em uma infraestrutura de transmissão de mensagens
+
+### Identidade
+
+- Pode ser suficiente permitir que a identidade do evento seja representada por suas propriedades, como é o caso com objetos de valor. O nome/tipo do evento juntamente com a identidade do agregado envolvido na causa, bem como o registro de darta/hora em que o evento ocorreu, pode ser suficiente para distingui-los do outro
+- Nos casos em que um evento é modeloado como um agregado, ou em outras situações em que os eventos devem ser comparados e suas propriedades combinadas não os distinguem, podemos atribuir a um evento uma identidade formal única. Mas pode haver outras razões para atribuir uma identidade única
+- Uma identidade única pode ser necessária quando os eventos são publicados fora do contexto delimitado local em que eles ocorrem, quando a infraestrutura de transmissão de mensagens os encaminha.
+- Isso aconteceria se o rementente da mensagem travasse antes de a infraestrutura de transmissão de mensagens confirmar que a mensagem foi enviada
+- Qualquer que sea a causa da nova entrega de uma mensagem,  a solução é fazer com que os assinantes remotos detectem a entrega duplicada da mensagem e ignorem as mensagens já recebidas
+
+## Publicando eventos a paritr do modelo de domínio
+
+- Uma das meneiras mais simples e eficazes de publicar eventos de domínio sem acoplamento com os componentes fora do modelo de domínio é criar um observador do tipo "leve"
+- Quando um evento é publicado, cada assinante é notificado de forma síncrono, um a um.Isso também implica que todos os assinantes rodam dentro da mesma transação, talvez controlada por um serviço de aplicação que é o cliente direto do modelo de domínio
+
+### Publicador
+
+- Talvez o uso mais comum dos eventos de domínio seja quando um agregado cria um evento e o publica. O publicador reside em um módulo do modelo, mas ele não modela alguns aspectos do domínio. Em vez disso, ele efornece um serviço simples para os agregados que precisam notificar os assinantes quanto aos eventos
+
+### Assinantes
+
+- Como os serviços de aplicação são o cliente direto do modelo de domínio ao usar a arquitetura hexagonal, eles estão em uma posição ideal para registrarem um assinante no publicador antes de executar o comportamento gerador de eventos nos agregados
+- O que o assinante faz com o evento não é mostrado no exemplo. Ele poderia envir um email sobre um `BacklogItemCommitted`, se isso fizesse algum sentido. Poderia salvar o evento em um armazenamento de eventos. Poderia encaminhar o evento via infraestrutura de mensagens. Salvar o evento em um armazenamento de eventos e encaminhá-lo usando uma infraestrutura de mensagens
