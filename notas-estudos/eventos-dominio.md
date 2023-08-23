@@ -48,3 +48,29 @@
 
 - Como os serviços de aplicação são o cliente direto do modelo de domínio ao usar a arquitetura hexagonal, eles estão em uma posição ideal para registrarem um assinante no publicador antes de executar o comportamento gerador de eventos nos agregados
 - O que o assinante faz com o evento não é mostrado no exemplo. Ele poderia envir um email sobre um `BacklogItemCommitted`, se isso fizesse algum sentido. Poderia salvar o evento em um armazenamento de eventos. Poderia encaminhar o evento via infraestrutura de mensagens. Salvar o evento em um armazenamento de eventos e encaminhá-lo usando uma infraestrutura de mensagens
+
+## Espalhando a novidade para contextos delimitados remotos
+
+- O uso de qualquer um dos vários mecanismos (framework) de transmissão de mensagens entre contextos delimitados exige adotar um compromentimento com a consitência futura. Ele não pode ser combatido. As alterações em um modelo que influenciam as alterações em um ou mais outros modelos não serão totalmente consistentes durante algum período de tempo decorrido. Mas ainda, dependendo do tráfego para os sistemas individuais e os efeitos que eles tem sobre outros, o fator é que os sistemas como um todo talvez nunca seham totalmente consistentes em um dado período de tempo qualquer
+
+### Consistência da infraestrutura de mensagens
+
+- Pelo menos dois mecanismos em uma solução de transmissão de mensagens devem sempre ser consistentes entre si: o armazenamento de persistência usado pelo modelo de domínio e o armazenamento de persistência que suporta a infraestrutura de mensagens utilizada para encaminhar os eventos publicados pelo modelo
+- Isso é necessário para assegurar que, quando as mudanças no modelo são persistidas, a entrega do evento também é garantida e que, se um evento é entregue por meio de mensagens, ele indica a situação real refletida no modelo que o publicou
+- Existem três maneiras básicas para garantir a consistência do modelo e do evento
+  - O modelo de domínio e a infraestrutura de mensagens compartilham o mesmo armazenamento de persistência. Isso permitirá que as alterações no modelo e a inserção da nova mensagem sejam confirmadas na mesma transação local
+  - O armazenamento de persistência de seu modelo de domínio e o armazenamento de persistência de suas mensagens são controlados sob uma transação XA global (confirmação em duas fases). Tem a vantagem de que você pode manter o modelo e o armazenamento de mensagens separados um do outro. Transações globais tendem a ser caras e ter baixo desempenho. Também é possível que o armazenamento do mdelo ou armazenamento do mecanismo de mensagens, ou ambos, não sejam compatíveis com XA
+  - Você cria uma área de armazenamento especial (por exemplo, uma tabela de banco de dados) para eventos no mesmo armazenamento de persistência usado pra salvar seu modelo de domínio. Semelhante ao intem 1 porém essa área de armazenamento não é possuída nem controlada por seu mecanismo de mensagens, mas, em vez disso por seu contexto delimitado
+
+### Serviços e sistemas autonomos
+
+- O serviço autonomo é usado para representar qualquer serviço de negócios rudimentar, possivelmente pensado como um sistema ou aplicação, que operar de maneira predominantemente independente de outros desses "serviços" na empresa
+- Em vez de chamar outros sistemas, use mensagens assíncronas para alcançar maior grau de independência entre os sistemas -autonomia.
+- O evento conterá uma quantidade limitada de parâmetros de comando e/ou estado de agregado que transmitirá um significado suficiente para permitir que contextos delimitados de inscrição reajam corretamente. Certamente, se um determinado evento não contiver informações suficiente para um dado assinante, o contrato por todo o domínio do evento deve ser alterado a fim de fornecer o que é necessário
+- Também é verdade que em alguns casos o uso de RPC não pode ser facilmente evitado. Alguns sistemas legados podem ser capazes de fornecer somente RPC
+- Se você praticamente precisar replicar os conceitos, objetos e suas associações a partir do modelo externo em seu próprio modelo, talvez você precise levar em consideração o uso de RPC
+
+### Tolerâncias a latência
+
+- É uma questão a considerar os períodos de latência, uma vez que dados fora de sincronia podem influenciar ações erradas e até mesmo prejudiciais. Devemos perguntar qual é o nível aceitável de espera entre os estados consistentes, e quanto retardo é excessivo.
+- Tolerâncias máximas de latência devem ser bem compreendidas e os sistemas devem ter as qualidades arquitetônicas para resolvê-las e, possivelmente, até superá-las. Alta disponibilidade e escabilidade devem ser projetadas nos serviços autônomos e na infraesturutra de suporte de transmissão de mensagens a fim de que os requisitos rigorosos não funcionais da empresa possam ser atendidos
