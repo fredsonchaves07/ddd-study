@@ -74,3 +74,29 @@
 
 - É uma questão a considerar os períodos de latência, uma vez que dados fora de sincronia podem influenciar ações erradas e até mesmo prejudiciais. Devemos perguntar qual é o nível aceitável de espera entre os estados consistentes, e quanto retardo é excessivo.
 - Tolerâncias máximas de latência devem ser bem compreendidas e os sistemas devem ter as qualidades arquitetônicas para resolvê-las e, possivelmente, até superá-las. Alta disponibilidade e escabilidade devem ser projetadas nos serviços autônomos e na infraesturutra de suporte de transmissão de mensagens a fim de que os requisitos rigorosos não funcionais da empresa possam ser atendidos
+
+## Armazenamento de eventos
+
+- Manter um armazenamento de todos os eventos de domínio para um único contexto delimitado apresenta vários potenciais benefícios.
+- Considere o que você faria se fosse armazenar um evento discreto para cada comportamento do comando de modelo que é executado. Você pode:
+  - Usar o armazenamento de eventos como uma fila para publicar todos os eventos de domínio por meio de uma infraestrutura de mensagens
+  - Usar o mesmo armazenamento de eventos para alimentar notificações de eventos basedos em REST a fim de fazer uma sondagem dos clientes
+  - Examinar um registro histórico do resultado de cada comando que já foi executado no modelo. Isso pode ajudar a monitorar erros não somente no modelo, mas também nos clientes
+  - Usar os dados na análise de tendências, previsão e outra análitica do negócio. Muitas vezes as empresas só fazem ideia de como esses dados históricos podem serusados mais tarde quando percebem que precisam deles
+  - Usar os eventos para resconstituir cada instância de agregado quando ela é recuperada do repositório. Isso é uma parte necessária do que é conhecido como prospecção de eventos
+  - Dado uma aplicação do ponto anterior, desfazer os blocos das alterações em um agregado. Isso é possível evitando (talvez removendo ou marcando como obsoleto) que certos eventos sejam utilizados para reconstituir uma determinada instância de agregado
+
+## Estilos arquitetônicos para encaminhar eventos armazenados
+
+- Depois que o armazenamento de eventos é preenchido, ele está disponível para fornecer eventos que devem ser encaminhados como notificações às partes interessadas
+- Um dos estilos é por meio dos recursos RESTful, que são consultados pelos clientes, e o segundo estilo é enviando mensagens por meio de um tópico/troca de um produto middleware de troca de mensagens
+
+### Publicando notificações como recursos restful
+
+- Este estilo funciona melhor quando usado em um ambiene que segue as premissas básicas da publicação-assinatura. Eis um resumo dos pontos positivos e negativos desta abordagem
+  - Se potencialmente muitos clientes conseguirem acessar um único URI bem conhecido para solicitar o mesmo conjunto de notificações, esta abordagem funcionará bem
+  - Se for necessário que um ou alguns consumidores busquem em múltiplos produtores recursos a fim de obter um único conjunto de tarefas a ser executado em uma sequência específica, é provável que rapidamente você sinta a dificuldade de usar uma abordagem RESTful.
+
+### Implementando notificações por meio de middlewae de mensagens
+
+- Os sistemas de mensagens também permite suportar de uma maneira relativamente fácil tanto o padrão de publicação-assinatura como o de filas, qualquer que seja o melhor para suas necessidades. Nos dois casos, o sistema de mensagens usa um modelo push para enviar mensagens das notificações de eventos para ouvintes ou assinantes registrados
