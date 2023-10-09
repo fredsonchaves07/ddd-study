@@ -16,3 +16,7 @@
 
 - Prefira referências e agregados externos somente por meio da identidade globalmente única, não mantendo uma referência direta (ou "ponteiro") a objetos.
 - O modelo pode ter melhor desempenho porque as instâncias requerem menos tempo de carregamento e consomem menos memória. Usar menos memória tem implicações positivas tanto para sobrecarga da alocação de memória como para a coleta de lixo
+
+## Regra: Use consistência futura fora do limite
+
+- Se a execução de um comando em uma instância de agregado exigir que regras adicionais de negócio sejam executadas em um ou mais outros agregados, utilize a consistência futura. Aceitar o fato de que todas as instâncias de agregado em uma empresa de grande escala e alto tráfego nunca são completamente consistentes ajuda a aceitar que a consistência futura também faz sentido em uma escala menor em que apenas algumas instãncias estão envolvidas
