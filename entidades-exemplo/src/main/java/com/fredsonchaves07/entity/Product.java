@@ -23,4 +23,12 @@ public class Product {
             throw new Error("Id is required");
         }
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void changePrice(double price) {
+        this.price = price;
+    }
 }

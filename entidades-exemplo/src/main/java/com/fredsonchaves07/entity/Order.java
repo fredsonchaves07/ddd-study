@@ -16,7 +16,7 @@ public class Order {
         this.id = id;
         this.customerId = customerId;
         this.orderItems = items;
-        validate();
+        this.total = items.stream().reduce(0, (subTotal, order) -> subTotal + order.getPrice(), Integer::sum);
     }
 
     private void validate() {
@@ -29,5 +29,9 @@ public class Order {
         if (this.orderItems == null || this.orderItems.size() == 0) {
             throw new Error("Ordem itens is required");
         }
+    }
+
+    public int getTotal() {
+        return total;
     }
 }

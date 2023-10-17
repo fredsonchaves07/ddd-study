@@ -6,13 +6,13 @@ public class OrderItem {
 
     private String name;
 
-    private double price;
+    private int price;
 
     private String productId;
 
     private int quantity;
 
-    public OrderItem(String id, String name, double price, String productId, int quantity) {
+    public OrderItem(String id, String name, int price, String productId, int quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -20,7 +20,7 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price * quantity;
     }
 }

@@ -10,6 +10,8 @@ public class Customer {
 
     private boolean isActive;
 
+    private int rewardsPoints;
+
     public Customer(String id, String name) {
         this.id = id;
         this.name = name;
@@ -52,5 +54,13 @@ public class Customer {
 
     public void activate() {
         this.isActive = true;
+    }
+
+    public void addRewardPoints(int points) {
+        rewardsPoints += points;
+    }
+
+    public int getRewardsPoints() {
+        return rewardsPoints;
     }
 }
