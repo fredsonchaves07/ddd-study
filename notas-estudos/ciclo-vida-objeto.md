@@ -17,3 +17,21 @@
 - Agrupe as entidades e os objetos de valor em agregados e defina os limites em torno de cada um. Escolha uma entidade para ser a raiz de cada agregado e controle todo o acesso aos objetos dentro do limite através da raiz
 - Permita que objetos externos façam referência somente à raiz. Referências transitórias a membros internos podem ser transmitidas para uso dentro de apenas uma única operação. Como a raiz controla o acesso, ela não pode ser supreendida com alterações na parte interna
 - Esse arranjo torna prática a execução de todas as invariantes para objetos no agregado e para o agregado como um todo em qualquer alterações de estado
+
+## Fábricas
+
+- Quando a criação de um objeto, ou um agregado inteiro, se torna complicada ou revela uma grande parte da estrutura interna, as fábricas fornecem o encapsulamento
+- A criação de um objeto pode ser uma importante operação por si só, mas operações complexas de montagem não se encaixam com a responsabilidade dos objetos criados. A combinação dessas responsabilidades pode gerar designs deselegantes e dificeis de entender. O fato de se fazer uma construção direta para o cliente confunde o design do cliente, rompe o encapsulamento do objeto montado ou do agregado e provoca um acoplamento excessivo do cliente com a implementação do objeto criado
+- Uma fábrica encapsula o conhecimento necessário para criar um objeto complexo ou um agregado. Ela fornece uma interface que reflete os objetivos do cliente e uma visão abstrata do objeto criado
+- Existem várias maneiras de criar um design de fábrica. Vários padrões de criação para fins especiais como factory method, abstract factory e builder
+
+## Repositórios
+
+- Um cliente precisa de uma maneira praica de adquirir referências aos objetos já existentes do domínio. Se a infraestrutura facilitar essa ação, os desenvolvedores do cliente poderão acrescentar associações com melhores travessias, confundindo o modelo. Por outro lado, eles podem usar consultas para extrair os dados exatos de que precisam dos banco de dados, ou extrair alguns objetos específicos em vez de navegar a partir das raizes dos agregados.
+- A lógica do domínio se desloca para consultas e o código do cliente, e as entidades e os objetos de valor se tornam meros recipientes de dados. A mera complexidade técnica de se aplicar a maior parte da infraestrutura de acesso a banco de dados rapidamente toma conta do código do cliente, o que leva os desenvolvedores a reduzir a camada do domínio, tornando o modelo irrelevante
+- Os clientes solicitam objetos a partir do repositório utilizando métodos de consulta que selecionam objetos com base em criteŕios especificados pelo cliente, normalmente o valor de determinados atributos
+- Os repositórios tem várias vantagens, incluindo as seguintes:
+  - Eles oferecem aos clientes um modelo simples para obter objetos persistentes e controlar seu ciclo de vida
+  - Eles tomam o design do aplicativo e do domínio e os desacoplam da tecnologia de persistência, de várias estratégias do banco de dados e até de várias fontes de dados
+  - Eles comunicam decisões de design sobre acesso a objetos
+  - Eles permitem a fácil substituição de uma implementação fictícia para uso em testes (normalmente utilizando uma coleção interna à memória)
