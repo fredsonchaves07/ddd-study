@@ -35,3 +35,11 @@
   - Eles tomam o design do aplicativo e do domínio e os desacoplam da tecnologia de persistência, de várias estratégias do banco de dados e até de várias fontes de dados
   - Eles comunicam decisões de design sobre acesso a objetos
   - Eles permitem a fácil substituição de uma implementação fictícia para uso em testes (normalmente utilizando uma coleção interna à memória)
+- Todos os repositórios oferecem métodos que permitem a um cliente solicitar objetos que combinem com alguns critérios, mas existem várias opções para como criar essa interface
+- O repositório mais fácil de ser construído possui consultas em código rígido com parâmetros específicos
+- O repositório vai delegar à devida infraestrutura serviços para que a tarefa seja cumprida. O encapsulamento dos mecanismos de armazenagem, recuperação e consulta é a característica mais básica da implementação de um repositório
+
+### A relação com as fábricas
+
+- Uma fábrica cuida do inicio da vida de um objeto; um repositório ajuda a controlar o meio e o final
+- A função de uma fábrica é instanciar um objeto potencialmente complexo a partir dos dados. Se um produto for um objeto novo, o cliente saberá disso e poderá acrescentá-lo ao repositório, que vai encapsular a armazenagem do objeto no banco de dados
