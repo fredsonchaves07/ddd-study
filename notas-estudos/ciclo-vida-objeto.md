@@ -24,6 +24,7 @@
 - A criação de um objeto pode ser uma importante operação por si só, mas operações complexas de montagem não se encaixam com a responsabilidade dos objetos criados. A combinação dessas responsabilidades pode gerar designs deselegantes e dificeis de entender. O fato de se fazer uma construção direta para o cliente confunde o design do cliente, rompe o encapsulamento do objeto montado ou do agregado e provoca um acoplamento excessivo do cliente com a implementação do objeto criado
 - Uma fábrica encapsula o conhecimento necessário para criar um objeto complexo ou um agregado. Ela fornece uma interface que reflete os objetivos do cliente e uma visão abstrata do objeto criado
 - Existem várias maneiras de criar um design de fábrica. Vários padrões de criação para fins especiais como factory method, abstract factory e builder
+- Além disso, métodos de fábrica nos agregados permitem expressar a linguagem ubíqua de uma maneira que não é possível utilizando somente construtores. Quando o nome do método comportamental é expressivo em relação à linguagem ubíqua, você criou mais um argumento poderoso para usar um método de fábrica
 
 ## Repositórios
 
