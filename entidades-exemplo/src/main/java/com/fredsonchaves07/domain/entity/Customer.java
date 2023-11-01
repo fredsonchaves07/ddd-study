@@ -48,8 +48,9 @@ public class Customer {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public Customer setAddress(Address address) {
         this.address = address;
+        return this;
     }
 
     public void activate() {
