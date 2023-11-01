@@ -1,6 +1,6 @@
-package com.fredsonchaves07.services;
+package com.fredsonchaves07.domain.services;
 
-import com.fredsonchaves07.entity.Customer;
+import com.fredsonchaves07.domain.entity.Customer;
 import com.fredsonchaves07.entity.Order;
 import com.fredsonchaves07.entity.OrderItem;
 

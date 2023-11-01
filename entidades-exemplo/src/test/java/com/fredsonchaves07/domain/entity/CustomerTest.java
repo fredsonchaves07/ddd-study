@@ -1,4 +1,4 @@
-package com.fredsonchaves07.entity;
+package com.fredsonchaves07.domain.entity;
 
 import org.junit.jupiter.api.Test;
 

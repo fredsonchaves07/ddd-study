@@ -1,4 +1,4 @@
-package com.fredsonchaves07.entity;
+package com.fredsonchaves07.domain.entity;
 
 public class Product {
 
@@ -22,6 +22,14 @@ public class Product {
         if (this.id.isEmpty()) {
             throw new Error("Id is required");
         }
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public double getPrice() {

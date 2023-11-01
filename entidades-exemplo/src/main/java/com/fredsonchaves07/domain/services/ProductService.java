@@ -1,6 +1,6 @@
-package com.fredsonchaves07.services;
+package com.fredsonchaves07.domain.services;
 
-import com.fredsonchaves07.entity.Product;
+import com.fredsonchaves07.domain.entity.Product;
 
 import java.util.List;
 
