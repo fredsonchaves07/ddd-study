@@ -1,4 +1,4 @@
-package com.fredsonchaves07.entity;
+package com.fredsonchaves07.domain.entity;
 
 public class OrderItem {
 
@@ -22,5 +22,21 @@ public class OrderItem {
 
     public int getPrice() {
         return price * quantity;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getProductId() {
+        return productId;
     }
 }

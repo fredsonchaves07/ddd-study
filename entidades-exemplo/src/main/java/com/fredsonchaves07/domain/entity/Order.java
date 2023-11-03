@@ -1,4 +1,4 @@
-package com.fredsonchaves07.entity;
+package com.fredsonchaves07.domain.entity;
 
 import java.util.List;
 
@@ -29,6 +29,18 @@ public class Order {
         if (this.orderItems == null || this.orderItems.size() == 0) {
             throw new Error("Ordem itens is required");
         }
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public String getCustomerId() {
+        return customerId;
     }
 
     public int getTotal() {

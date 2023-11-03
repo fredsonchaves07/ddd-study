@@ -1,8 +1,8 @@
 package com.fredsonchaves07.domain.services;
 
 import com.fredsonchaves07.domain.entity.Customer;
-import com.fredsonchaves07.entity.Order;
-import com.fredsonchaves07.entity.OrderItem;
+import com.fredsonchaves07.domain.entity.Order;
+import com.fredsonchaves07.domain.entity.OrderItem;
 
 import java.util.List;
 import java.util.UUID;
