@@ -1,27 +1,34 @@
-import Customer from "../../customer/entity/customer";
-import Order from "../entity/order";
-import OrderItem from "../entity/order_item";
-import OrderService from "./order.service";
-describe("Order service unit tets", () => {
-  it("should place an order", () => {
-    const customer = new Customer("c1", "Customer 1");
-    const item1 = new OrderItem("i1", "Item 1", 10, "p1", 1);
+import { Customer } from "../../customer/entity/customer";
+import { Order } from "../entity/order";
+import { OrderItem } from "../entity/order_item";
+import { OrderService } from "./order.service";
 
-    const order = OrderService.placeOrder(customer, [item1]);
-
-    expect(customer.rewardPoints).toBe(5);
-    expect(order.total()).toBe(10);
+describe("Order Service", () => {
+  it("Should throw error when items are not provided", () => {
+    expect(() => {
+      OrderService.placeOrder(new Customer("123", "John Doe"), []);
+    }).toThrowError("Items are required");
   });
 
-  it("should get total of all orders", () => {
-    const item1 = new OrderItem("i1", "Item 1", 100, "p1", 1);
-    const item2 = new OrderItem("i2", "Item 2", 200, "p2", 2);
+  it("Should place an order", () => {
+    const customer = new Customer("123", "John Doe");
+    const item = new OrderItem("123", "Item 1", 9.99, "123", 1);
 
-    const order = new Order("o1", "c1", [item1]);
-    const order2 = new Order("o2", "c1", [item2]);
+    const order = OrderService.placeOrder(customer, [item]);
 
-    const total = OrderService.total([order, order2]);
+    expect(customer.rewardPoints).toBe(4.995); // 9.99 / 2
+    expect(order.total()).toBe(9.99);
+  });
 
-    expect(total).toBe(500);
+  it("Should calculate the total price of all orders", () => {
+    const item1 = new OrderItem("123", "Item 1", 9.99, "123", 1);
+    const item2 = new OrderItem("456", "Item 2", 19.99, "456", 2);
+
+    const order1 = new Order("123", "123", [item1]);
+    const order2 = new Order("456", "456", [item1, item2]);
+
+    const total = OrderService.calculateTotalPrice([order1, order2]);
+
+    expect(total).toEqual(59.96);
   });
 });

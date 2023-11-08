@@ -1,5 +1,6 @@
-import OrderItem from "./order_item";
-export default class Order {
+import { OrderItem } from "./order_item";
+
+export class Order {
   private _id: string;
   private _customerId: string;
   private _items: OrderItem[];
@@ -10,6 +11,7 @@ export default class Order {
     this._customerId = customerId;
     this._items = items;
     this._total = this.total();
+
     this.validate();
   }
 
@@ -25,30 +27,34 @@ export default class Order {
     return this._items;
   }
 
-  validate(): boolean {
-    if (this._id.length === 0) {
+  private validate(): void {
+    if (!this._id) {
       throw new Error("Id is required");
     }
-    if (this._customerId.length === 0) {
+
+    if (!this._customerId) {
       throw new Error("CustomerId is required");
     }
-    if (this._items.length === 0) {
+
+    if (!this._items || this._items.length === 0) {
       throw new Error("Items are required");
     }
 
-    if (this._items.some((item) => item.quantity <= 0)) {
+    if (this._items.some((item) => item.quantity < 1)) {
       throw new Error("Quantity must be greater than 0");
     }
+  }
 
-    return true;
+  changeItems(items: OrderItem[]): void {
+    this._items = items;
+    this._total = this.total();
+    this.validate();
   }
 
   total(): number {
-    return this._items.reduce((acc, item) => acc + item.total(), 0);
-  }
-
-  addItem(item: OrderItem): void {
-      this.items.push(item);
-      this.validate();
+    return this._items.reduce(
+      (total, item) => total + item.orderItemTotal(),
+      0
+    );
   }
 }
