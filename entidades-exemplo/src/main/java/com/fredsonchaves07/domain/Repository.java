@@ -1,4 +1,4 @@
-package com.fredsonchaves07.domain.repository;
+package com.fredsonchaves07.domain;
 
 import java.util.List;
 

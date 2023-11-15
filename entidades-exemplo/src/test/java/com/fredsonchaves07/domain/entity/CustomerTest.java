@@ -1,5 +1,6 @@
 package com.fredsonchaves07.domain.entity;
 
+import com.fredsonchaves07.domain.customer.entity.Customer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,8 +1,9 @@
 package com.fredsonchaves07.domain.services;
 
-import com.fredsonchaves07.domain.entity.Customer;
-import com.fredsonchaves07.domain.entity.Order;
-import com.fredsonchaves07.domain.entity.OrderItem;
+import com.fredsonchaves07.domain.checkout.entity.Order;
+import com.fredsonchaves07.domain.checkout.entity.OrderItem;
+import com.fredsonchaves07.domain.checkout.service.OrderService;
+import com.fredsonchaves07.domain.customer.entity.Customer;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

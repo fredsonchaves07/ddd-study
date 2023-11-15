@@ -1,4 +1,4 @@
-package com.fredsonchaves07.domain.entity;
+package com.fredsonchaves07.domain.checkout.entity;
 
 public class OrderItem {
 

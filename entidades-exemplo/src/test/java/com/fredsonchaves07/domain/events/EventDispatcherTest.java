@@ -1,12 +1,14 @@
 package com.fredsonchaves07.domain.events;
 
-import com.fredsonchaves07.domain.entity.Customer;
-import com.fredsonchaves07.domain.entity.Product;
-import com.fredsonchaves07.domain.events.customer.CustomerCreatedEvent;
-import com.fredsonchaves07.domain.events.customer.handler.Log1CustomerCreatedHandler;
-import com.fredsonchaves07.domain.events.customer.handler.Log2CustomerCreatedHandler;
-import com.fredsonchaves07.domain.events.product.ProductCreatedEvent;
-import com.fredsonchaves07.domain.events.product.handler.SendEmailWhenProductIsCreatedHandler;
+import com.fredsonchaves07.domain.EventDispatcher;
+import com.fredsonchaves07.domain.EventHandler;
+import com.fredsonchaves07.domain.customer.entity.Customer;
+import com.fredsonchaves07.domain.customer.events.customer.CustomerCreatedEvent;
+import com.fredsonchaves07.domain.customer.events.customer.handler.Log1CustomerCreatedHandler;
+import com.fredsonchaves07.domain.customer.events.customer.handler.Log2CustomerCreatedHandler;
+import com.fredsonchaves07.domain.product.entity.Product;
+import com.fredsonchaves07.domain.product.events.product.ProductCreatedEvent;
+import com.fredsonchaves07.domain.product.events.product.handler.SendEmailWhenProductIsCreatedHandler;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

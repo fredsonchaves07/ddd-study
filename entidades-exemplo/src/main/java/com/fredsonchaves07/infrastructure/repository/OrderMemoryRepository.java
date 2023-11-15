@@ -1,7 +1,7 @@
 package com.fredsonchaves07.infrastructure.repository;
 
-import com.fredsonchaves07.domain.entity.Order;
-import com.fredsonchaves07.domain.repository.OrderRepository;
+import com.fredsonchaves07.domain.checkout.entity.Order;
+import com.fredsonchaves07.domain.checkout.repository.OrderRepository;
 import com.fredsonchaves07.infrastructure.db.MemoryDB;
 
 import java.util.List;

@@ -1,10 +1,14 @@
 package com.fredsonchaves07.infrastructure.repository;
 
 
-import com.fredsonchaves07.domain.entity.*;
-import com.fredsonchaves07.domain.repository.CustomerRepository;
-import com.fredsonchaves07.domain.repository.OrderRepository;
-import com.fredsonchaves07.domain.repository.ProductRepository;
+import com.fredsonchaves07.domain.checkout.entity.Order;
+import com.fredsonchaves07.domain.checkout.entity.OrderItem;
+import com.fredsonchaves07.domain.checkout.repository.OrderRepository;
+import com.fredsonchaves07.domain.customer.entity.Address;
+import com.fredsonchaves07.domain.customer.entity.Customer;
+import com.fredsonchaves07.domain.customer.repository.CustomerRepository;
+import com.fredsonchaves07.domain.product.entity.Product;
+import com.fredsonchaves07.domain.product.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

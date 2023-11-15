@@ -1,4 +1,4 @@
-package com.fredsonchaves07.domain.events;
+package com.fredsonchaves07.domain;
 
 import java.time.LocalDateTime;
 

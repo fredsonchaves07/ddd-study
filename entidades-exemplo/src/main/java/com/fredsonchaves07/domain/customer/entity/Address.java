@@ -1,4 +1,4 @@
-package com.fredsonchaves07.domain.entity;
+package com.fredsonchaves07.domain.customer.entity;
 
 public record Address(
         String rua,

@@ -1,6 +1,7 @@
 package com.fredsonchaves07.domain.services;
 
-import com.fredsonchaves07.domain.entity.Product;
+import com.fredsonchaves07.domain.product.entity.Product;
+import com.fredsonchaves07.domain.product.service.ProductService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

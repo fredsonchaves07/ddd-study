@@ -1,7 +1,7 @@
-package com.fredsonchaves07.domain.events.product;
+package com.fredsonchaves07.domain.product.events.product;
 
-import com.fredsonchaves07.domain.entity.Product;
-import com.fredsonchaves07.domain.events.Event;
+import com.fredsonchaves07.domain.Event;
+import com.fredsonchaves07.domain.product.entity.Product;
 
 import java.time.LocalDateTime;
 
