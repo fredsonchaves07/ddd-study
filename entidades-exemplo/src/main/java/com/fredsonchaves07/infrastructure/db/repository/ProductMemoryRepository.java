@@ -1,4 +1,4 @@
-package com.fredsonchaves07.infrastructure.repository;
+package com.fredsonchaves07.infrastructure.db.repository;
 
 import com.fredsonchaves07.domain.product.entity.Product;
 import com.fredsonchaves07.domain.product.repository.ProductRepository;

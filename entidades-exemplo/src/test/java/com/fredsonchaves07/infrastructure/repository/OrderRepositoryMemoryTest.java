@@ -9,6 +9,9 @@ import com.fredsonchaves07.domain.customer.entity.Customer;
 import com.fredsonchaves07.domain.customer.repository.CustomerRepository;
 import com.fredsonchaves07.domain.product.entity.Product;
 import com.fredsonchaves07.domain.product.repository.ProductRepository;
+import com.fredsonchaves07.infrastructure.db.repository.CustomerMemoryRepository;
+import com.fredsonchaves07.infrastructure.db.repository.OrderMemoryRepository;
+import com.fredsonchaves07.infrastructure.db.repository.ProductMemoryRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

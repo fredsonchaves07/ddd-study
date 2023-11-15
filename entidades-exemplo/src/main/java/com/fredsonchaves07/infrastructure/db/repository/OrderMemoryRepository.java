@@ -1,4 +1,4 @@
-package com.fredsonchaves07.infrastructure.repository;
+package com.fredsonchaves07.infrastructure.db.repository;
 
 import com.fredsonchaves07.domain.checkout.entity.Order;
 import com.fredsonchaves07.domain.checkout.repository.OrderRepository;

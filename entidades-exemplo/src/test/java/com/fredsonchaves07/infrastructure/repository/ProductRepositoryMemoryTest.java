@@ -2,6 +2,7 @@ package com.fredsonchaves07.infrastructure.repository;
 
 import com.fredsonchaves07.domain.product.entity.Product;
 import com.fredsonchaves07.domain.product.repository.ProductRepository;
+import com.fredsonchaves07.infrastructure.db.repository.ProductMemoryRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

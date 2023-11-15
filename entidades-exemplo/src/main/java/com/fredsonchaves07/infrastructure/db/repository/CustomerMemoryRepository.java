@@ -1,4 +1,4 @@
-package com.fredsonchaves07.infrastructure.repository;
+package com.fredsonchaves07.infrastructure.db.repository;
 
 import com.fredsonchaves07.domain.customer.entity.Customer;
 import com.fredsonchaves07.domain.customer.repository.CustomerRepository;

@@ -3,6 +3,7 @@ package com.fredsonchaves07.infrastructure.repository;
 import com.fredsonchaves07.domain.customer.entity.Address;
 import com.fredsonchaves07.domain.customer.entity.Customer;
 import com.fredsonchaves07.domain.customer.repository.CustomerRepository;
+import com.fredsonchaves07.infrastructure.db.repository.CustomerMemoryRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
