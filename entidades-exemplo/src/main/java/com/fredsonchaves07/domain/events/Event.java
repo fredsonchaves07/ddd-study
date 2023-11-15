@@ -7,4 +7,6 @@ public interface Event<T> {
     LocalDateTime dataTimeOcurred();
 
     T eventData();
+
+    String getEventName();
 }

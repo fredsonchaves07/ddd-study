@@ -10,7 +10,10 @@ public class EventDispatcher<T extends Event<?>> {
     private HashMap<String, List<EventHandler<T>>> eventHandlers = new LinkedHashMap<>();
 
     public void notify(Event<?> event) {
-
+        String eventName = event.getEventName();
+        if (eventHandlers.containsKey(eventName)) {
+            eventHandlers.get(eventName).forEach(eventHandler -> eventHandler.handler(event));
+        }
     }
 
     public void register(String eventName, EventHandler<T> eventHandler) {
@@ -25,7 +28,7 @@ public class EventDispatcher<T extends Event<?>> {
     }
 
     public void unregisterAll() {
-
+        this.eventHandlers = new LinkedHashMap<>();
     }
 
     public List<String> getEventHandlers() {
