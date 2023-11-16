@@ -1,6 +1,6 @@
 package com.fredsonchaves07.domain.product.entity;
 
-public class Product {
+public class Product implements ProductInterface {
 
     private String id;
 
@@ -24,14 +24,17 @@ public class Product {
         }
     }
 
+    @Override
     public String getId() {
         return id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public double getPrice() {
         return price;
     }
