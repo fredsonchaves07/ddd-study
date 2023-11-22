@@ -1,0 +1,6 @@
+# Event Storming
+
+- Técnica criada por Alberto Brandolini para que possamos entender de forma mais clara o domínio das aplicação atrabés dos eventos gerados por elas
+- Normalmente acontece em um formato de workshop. É uma dinâmica de grupo envolvendo domain experts e área técnica
+- A ideia principal dessa técnica é o mapeamento dos eventos
+- Pegamos todos os eventos e depois os comandos. Após isso, podemos trabalhar nos atores
